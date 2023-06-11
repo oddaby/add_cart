@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Order Summary</h1>
+  <ul>
+    {% for item in order.order_items.all %}
+      <li>
+        <h2>{{ item.product.name }}</h2>
+        <p>Quantity: {{ item.quantity }}</p>
+        <p>Price: {{ item.price }}</p>
+      </li>
+    {% endfor %}
+  </ul>
+  <p>Total amount: {{ order.total_amount }}</p>
+  <a href="{% url 'checkout' %}">Proceed to Checkout</a>
+{% endblock %}

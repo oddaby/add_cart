@@ -1,0 +1,28 @@
+<!-- app/templates/checkout.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Checkout</h1>
+
+<form method="POST" action="{% url 'checkout' %}">
+  {% csrf_token %}
+  
+  <!-- Display the order details -->
+  <h2>Order Summary</h2>
+  <p>Customer: {{ order.customer.username }}</p>
+  <p>Date: {{ order.date }}</p>
+  <p>Total amount: {{ order.total_amount }}</p>
+  
+  <!-- Add form fields for checkout information -->
+  <h2>Shipping Information</h2>
+  <label for="name">Name</label>
+  <input type="text" name="name" id="name">
+  
+  <label for="address">Address</label>
+  <input type="text" name="address" id="address">
+  
+  <!-- Add more fields for other checkout information as needed -->
+  
+  <button type="submit">Place Order</button>
+</form>
+{% endblock %}

@@ -1,0 +1,19 @@
+<!-- customers/customer_login.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Customer Login</h1>
+{% if messages %}
+<ul>
+  {% for message in messages %}
+  <li>{{ message }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+<form method="post">
+  {% csrf_token %} <!-- add a hidden input field with the csrf token value -->
+  {{ form.as_p }}
+  <button type="submit">Login</button>
+</form>
+<a href="#">Register</a>
+{% endblock %}

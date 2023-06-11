@@ -1,0 +1,31 @@
+<!-- products/products_list.html -->
+{% extends 'base.html' %}
+{% load cache %}
+
+{% block content %}
+<h1>Products List</h1>
+<a href="{% url 'cart' %}">cart</a>
+
+
+<ul>
+  {% for product in page_obj %}
+  <li>
+    <h2>{{ product.name }}</h2>
+    <p>Price: {{ product.price }}</p>
+    <a href="{% url 'product_detail' product.id %}">View details</a>
+    <a href="{% url 'add' product.id %}">Add to cart</a>
+
+  </li>
+  {% endfor %}
+</ul>
+
+
+
+
+{% if page_obj.has_previous %}
+<a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+{% endif %}
+{% if page_obj.has_next %}
+<a href="?page={{ page_obj.next_page_number }}">Next</a>
+{% endif %}
+{% endblock %}
